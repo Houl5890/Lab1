@@ -1,0 +1,68 @@
+using System;
+
+// Абстрактний клас для користувачів форуму
+abstract class ForumUser
+{
+    public string Username { get; set; }
+    
+    public ForumUser(string username)
+    {
+        Username = username;
+    }
+    
+    public abstract void PerformAction(); // Абстрактний метод (динамічний поліморфізм)
+}
+
+// Клас користувача
+class RegularUser : ForumUser
+{
+    public RegularUser(string username) : base(username) { }
+    
+    public override void PerformAction()
+    {
+        Console.WriteLine($"User {Username} is posting a comment.");
+    }
+}
+
+// Клас адміністратора
+class AdminUser : ForumUser
+{
+    public AdminUser(string username) : base(username) { }
+    
+    public override void PerformAction()
+    {
+        Console.WriteLine($"Admin {Username} is deleting a post.");
+    }
+}
+
+// Статичний поліморфізм (перевантаження методів)
+class ForumActions
+{
+    public void NotifyUser(RegularUser user)
+    {
+        Console.WriteLine($"Notifying user {user.Username}.");
+    }
+
+    public void NotifyUser(AdminUser admin)
+    {
+        Console.WriteLine($"Notifying admin {admin.Username}.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Динамічний поліморфізм (використання абстрактного класу)
+        ForumUser user = new RegularUser("JohnDoe");
+        ForumUser admin = new AdminUser("AdminJane");
+        
+        user.PerformAction();
+        admin.PerformAction();
+
+        // Статичний поліморфізм (перевантаження методів)
+        ForumActions forumActions = new ForumActions();
+        forumActions.NotifyUser((RegularUser)user);
+        forumActions.NotifyUser((AdminUser)admin);
+    }
+}
