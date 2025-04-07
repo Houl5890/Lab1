@@ -1,0 +1,152 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace ForumApp
+{
+    public partial class FormMain : Form
+    {
+        private List<ForumUser> users = new List<ForumUser>();
+        private ForumActions forumActions = new ForumActions();
+
+        public FormMain()
+        {
+            InitializeComponent();
+        }
+
+        // Обробник для кнопки "Додати Regular"
+        private void btnAddRegular_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            if (!string.IsNullOrEmpty(username))
+            {
+                users.Add(new RegularUser(username));
+                txtUsername.Clear();
+                MessageBox.Show("Regular користувача додано.");
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, введіть ім'я користувача.");
+            }
+        }
+
+        // Обробник для кнопки "Додати Admin"
+        private void btnAddAdmin_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            if (!string.IsNullOrEmpty(username))
+            {
+                users.Add(new AdminUser(username));
+                txtUsername.Clear();
+                MessageBox.Show("Admin користувача додано.");
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, введіть ім'я користувача.");
+            }
+        }
+
+        // Обробник для кнопки "Показати всіх"
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            foreach (var user in users)
+            {
+                listBox1.Items.Add($"{user.GetType().Name}: {user.Username}");
+            }
+        }
+
+        // Обробник для кнопки "Сортувати"
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            var sortedUsers = users.OrderBy(u => u.Username).ToList();
+            listBox1.Items.Clear();
+            foreach (var user in sortedUsers)
+            {
+                listBox1.Items.Add($"{user.GetType().Name}: {user.Username}");
+            }
+        }
+
+        // Обробник для кнопки "Тільки адміни"
+        private void btnFilterAdmins_Click(object sender, EventArgs e)
+        {
+            var admins = users.Where(u => u is AdminUser);
+            listBox1.Items.Clear();
+            foreach (var admin in admins)
+            {
+                listBox1.Items.Add($"Admin: {admin.Username}");
+            }
+        }
+
+        // Обробник для кнопки "Викликати дію"
+        private void btnPerformAction_Click(object sender, EventArgs e)
+        {
+            foreach (var user in users)
+            {
+                user.PerformAction();
+            }
+            MessageBox.Show("Дії виконані (перевір консоль).");
+        }
+
+        // Обробник для кнопки "Сповістити"
+        private void btnNotify_Click(object sender, EventArgs e)
+        {
+            foreach (var user in users)
+            {
+                if (user is RegularUser regular)
+                    forumActions.NotifyUser(regular);
+                else if (user is AdminUser admin)
+                    forumActions.NotifyUser(admin);
+            }
+            MessageBox.Show("Сповіщення надіслано (перевір консоль).");
+        }
+    }
+
+    // Поліморфізм
+
+    public abstract class ForumUser
+    {
+        public string Username { get; set; }
+
+        public ForumUser(string username)
+        {
+            Username = username;
+        }
+
+        public abstract void PerformAction();
+    }
+
+    public class RegularUser : ForumUser
+    {
+        public RegularUser(string username) : base(username) { }
+
+        public override void PerformAction()
+        {
+            Console.WriteLine($"User {Username} is posting a comment.");
+        }
+    }
+
+    public class AdminUser : ForumUser
+    {
+        public AdminUser(string username) : base(username) { }
+
+        public override void PerformAction()
+        {
+            Console.WriteLine($"Admin {Username} is deleting a post.");
+        }
+    }
+
+    public class ForumActions
+    {
+        public void NotifyUser(RegularUser user)
+        {
+            Console.WriteLine($"Notifying user {user.Username}.");
+        }
+
+        public void NotifyUser(AdminUser admin)
+        {
+            Console.WriteLine($"Notifying admin {admin.Username}.");
+        }
+    }
+}
