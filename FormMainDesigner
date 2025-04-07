@@ -1,0 +1,138 @@
+namespace ForumApp
+{
+    partial class FormMain
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+                components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        private void InitializeComponent()
+        {
+            txtUsername = new TextBox();
+            listBox1 = new ListBox();
+            btnAddRegular = new Button();
+            btnAddAdmin = new Button();
+            btnShowAll = new Button();
+            btnSort = new Button();
+            btnFilterAdmins = new Button();
+            btnPerformAction = new Button();
+            btnNotify = new Button();
+            SuspendLayout();
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(12, 12);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Ім'я користувача";
+            txtUsername.Size = new Size(200, 27);
+            txtUsername.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(12, 150);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(360, 204);
+            listBox1.TabIndex = 1;
+            // 
+            // btnAddRegular
+            // 
+            btnAddRegular.Location = new Point(230, 10);
+            btnAddRegular.Name = "btnAddRegular";
+            btnAddRegular.Size = new Size(140, 23);
+            btnAddRegular.TabIndex = 2;
+            btnAddRegular.Text = "Додати Regular";
+            btnAddRegular.Click += btnAddRegular_Click;
+            // 
+            // btnAddAdmin
+            // 
+            btnAddAdmin.Location = new Point(230, 40);
+            btnAddAdmin.Name = "btnAddAdmin";
+            btnAddAdmin.Size = new Size(140, 23);
+            btnAddAdmin.TabIndex = 3;
+            btnAddAdmin.Text = "Додати Admin";
+            btnAddAdmin.Click += btnAddAdmin_Click;
+            // 
+            // btnShowAll
+            // 
+            btnShowAll.Location = new Point(12, 50);
+            btnShowAll.Name = "btnShowAll";
+            btnShowAll.Size = new Size(200, 23);
+            btnShowAll.TabIndex = 4;
+            btnShowAll.Text = "Показати всіх";
+            btnShowAll.Click += btnShowAll_Click;
+            // 
+            // btnSort
+            // 
+            btnSort.Location = new Point(12, 80);
+            btnSort.Name = "btnSort";
+            btnSort.Size = new Size(200, 23);
+            btnSort.TabIndex = 5;
+            btnSort.Text = "Сортувати";
+            btnSort.Click += btnSort_Click;
+            // 
+            // btnFilterAdmins
+            // 
+            btnFilterAdmins.Location = new Point(12, 110);
+            btnFilterAdmins.Name = "btnFilterAdmins";
+            btnFilterAdmins.Size = new Size(200, 23);
+            btnFilterAdmins.TabIndex = 6;
+            btnFilterAdmins.Text = "Тільки адміни";
+            btnFilterAdmins.Click += btnFilterAdmins_Click;
+            // 
+            // btnPerformAction
+            // 
+            btnPerformAction.Location = new Point(230, 70);
+            btnPerformAction.Name = "btnPerformAction";
+            btnPerformAction.Size = new Size(140, 23);
+            btnPerformAction.TabIndex = 7;
+            btnPerformAction.Text = "Викликати дію";
+            btnPerformAction.Click += btnPerformAction_Click;
+            // 
+            // btnNotify
+            // 
+            btnNotify.Location = new Point(230, 100);
+            btnNotify.Name = "btnNotify";
+            btnNotify.Size = new Size(140, 23);
+            btnNotify.TabIndex = 8;
+            btnNotify.Text = "Сповістити";
+            btnNotify.Click += btnNotify_Click;
+            // 
+            // FormMain
+            // 
+            ClientSize = new Size(384, 381);
+            Controls.Add(txtUsername);
+            Controls.Add(listBox1);
+            Controls.Add(btnAddRegular);
+            Controls.Add(btnAddAdmin);
+            Controls.Add(btnShowAll);
+            Controls.Add(btnSort);
+            Controls.Add(btnFilterAdmins);
+            Controls.Add(btnPerformAction);
+            Controls.Add(btnNotify);
+            Name = "FormMain";
+            Text = "Forum App";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnAddRegular;
+        private System.Windows.Forms.Button btnAddAdmin;
+        private System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.Button btnSort;
+        private System.Windows.Forms.Button btnFilterAdmins;
+        private System.Windows.Forms.Button btnPerformAction;
+        private System.Windows.Forms.Button btnNotify;
+    }
+}
