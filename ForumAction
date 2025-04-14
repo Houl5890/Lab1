@@ -1,0 +1,17 @@
+using System;
+
+namespace ForumApp
+{
+    public class ForumActions
+    {
+        public void NotifyUser(RegularUser user)
+        {
+            Console.WriteLine($"Notifying user {user.Username}.");
+        }
+
+        public void NotifyUser(AdminUser admin)
+        {
+            Console.WriteLine($"Notifying admin {admin.Username}.");
+        }
+    }
+}
