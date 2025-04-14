@@ -1,0 +1,14 @@
+namespace ForumApp
+{
+    public abstract class ForumUser
+    {
+        public string Username { get; set; }
+
+        public ForumUser(string username)
+        {
+            Username = username;
+        }
+
+        public abstract void PerformAction();
+    }
+}
