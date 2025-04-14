@@ -1,0 +1,14 @@
+using System;
+
+namespace ForumApp
+{
+    public class AdminUser : ForumUser
+    {
+        public AdminUser(string username) : base(username) { }
+
+        public override void PerformAction()
+        {
+            Console.WriteLine($"Admin {Username} is deleting a post.");
+        }
+    }
+}
